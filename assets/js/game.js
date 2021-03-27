@@ -26,10 +26,13 @@ var fightOrSkip = function () {
 
     // if yes (true), leave fight
     if (confirmSkip) {
-      window.alert(playerInfo.name + ' has decided to skip this fight. Goodbye!');
-      // subtract money from playerInfo.money for skipping
+      window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
+      // subtract money from playerMoney for skipping, but don't let them go into the negative
       playerInfo.money = Math.max(0, playerInfo.money - 10);
-      shop();
+
+      // return true if player wants to leave
+      return true;
+      shop()
     }
   }
 }
@@ -47,15 +50,7 @@ var fight = function(enemy) {
     fightOrSkip(); // <-- Replace code with this function call
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
-    // if yes (true), leave fight
-    if (confirmSkip) {
-      window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
-      // subtract money from playerMoney for skipping, but don't let them go into the negative
-      playerInfo.money = Math.max(0, playerInfo.money - 10);
 
-      // return true if player wants to leave
-      return true;
-    }
 
     enemy.health = Math.max(0, enemy.health - damage);
     console.log(
