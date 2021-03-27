@@ -12,7 +12,7 @@ var fightOrSkip = function () {
   var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
 
   // Conditional Recursive function call
-  if (promptFight === "skip" || promptFight === null) {
+  if (promptFight === "" || promptFight === null) {
     window.alert("You need to provide a valid answer! Please try again.");
     return fightOrSkip();
   }
@@ -41,14 +41,12 @@ var fightOrSkip = function () {
 var fight = function(enemy) {
   // repeat and execute as long as the enemy-robot is alive
   while (playerInfo.health > 0 && enemy.health > 0) {
-    //ask player if they'd like to fight or skip using fightOrSkip function
-    if (fightOrSkip()) {
-      // if true, leave fight by breaking loop
-      break;
-    }
-
     fightOrSkip(); // <-- Replace code with this function call
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+      break
+    }
+
+   
 
 
 
@@ -65,7 +63,7 @@ var fight = function(enemy) {
       playerInfo.money = playerInfo.money + 20;
 
       // leave while() loop since enemy is dead
-      break;
+      
     } else {
       window.alert(enemy.name + ' still has ' + enemy.health + ' health left.');
     }
@@ -83,14 +81,13 @@ var fight = function(enemy) {
     if (playerInfo.health <= 0) {
       window.alert(playerInfo.name + ' has died!');
       // leave while() loop if player is dead
-      break;
+    
     } else {
       window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
     }
-  }
-    return false;
+  };
+    
 
-};
 
 // function to set name
 var getPlayerName = function() {
@@ -121,7 +118,7 @@ var startGame = function() {
     if (playerInfo.health > 0) {
       // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
       window.alert('Welcome to Robot Gladiators! Round ' + (i + 1));
-      debugger;
+      
       // pick new enemy to fight based on the index of the enemyInfo array
       var pickedEnemyObj = enemyInfo[i];
 
@@ -183,16 +180,13 @@ var shop = function() {
 
   // use switch case to carry out action
   switch (shopOptionPrompt) {
-    case 'REFILL':
-    case 'refill':
+    case '1':
       playerInfo.refillHealth();
       break;
-    case 'UPGRADE':
-    case 'upgrade':
+    case '2':
       playerInfo.upgradeAttack();
       break;
-    case 'LEAVE':
-    case 'leave':
+    case '3':
       window.alert('Leaving the store.');
 
       // do nothing, so function will end
